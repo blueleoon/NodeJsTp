@@ -7,6 +7,7 @@
 var express = require('express');        // call express
 var app = express();                 // define our app using express
 var bodyParser = require('body-parser');
+const fs = require('fs');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -68,6 +69,8 @@ router.route('/books')
     });
 
 
+// on routes that end in /books/:book_id
+// ----------------------------------------------------
 router.route('/books/:book_id')
 
 

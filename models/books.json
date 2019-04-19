@@ -1,9 +1,239 @@
-{
-    "nom": "",
-    "autheur": {},
-    "collection": "",
-    "editeur": {},
-    "date_parution":"",
-    "genre":{},
-    "pays":""
-}
+[
+    {
+        "_id": "5cb9997c3ed1670c8ccb9d5d",
+        "name": "Oceola Alvarado ",
+        "auteurs": [
+            "Sanford  Myers"
+        ],
+        "editeur": "Iplax",
+        "collection": "Holcombe Crooke Avenue",
+        "about": "Culpa eu velit cillum occaecat non nisi ad magna ea exercitation nisi sit. Enim in ipsum fugiat quis adipisicing magna do do ex aliquip.",
+        "date_parution": "2016-03-27",
+        "tags": [
+            "Jeunesse",
+            "Aventure",
+            "Sciences Humaines"
+        ]
+    },
+    {
+        "_id": "5cb9997c9de71c531f8eac56",
+        "name": "Fontanelle Booth ",
+        "auteurs": [
+            "Herring  Ellis",
+            "Rosanne  Mays"
+        ],
+        "editeur": "Eyeris",
+        "collection": "Allensworth Barwell Terrace",
+        "about": "Reprehenderit eiusmod laboris commodo culpa in magna eiusmod mollit exercitation in non. Laboris ipsum laboris voluptate velit voluptate et elit velit.",
+        "date_parution": "2014-05-08",
+        "tags": [
+            "Manga",
+            "Histoire ",
+            "Erotisme"
+        ]
+    },
+    {
+        "_id": "5cb9997c9e8d49662a662203",
+        "name": "Trinway Massey ",
+        "auteurs": [
+            "Davidson  Bridges"
+        ],
+        "editeur": "Ecrater",
+        "collection": "Siglerville Wolcott Street",
+        "about": "Consectetur mollit esse quis consectetur nisi ad deserunt officia ea eu nulla tempor. Minim cupidatat dolor aute reprehenderit ut dolore aliqua eiusmod dolor ullamco duis amet fugiat mollit.",
+        "date_parution": "2016-09-28",
+        "tags": [
+            "Erotisme"
+        ]
+    },
+    {
+        "_id": "5cb9997c5d35a4d1c3515c90",
+        "name": "Kieler Goodman ",
+        "auteurs": [
+            "Mitchell  Rowland"
+        ],
+        "editeur": "Ziggles",
+        "collection": "Jamestown Glendale Court",
+        "about": "Commodo aute culpa nisi ut culpa dolore ex ullamco reprehenderit ad adipisicing dolor commodo aliqua. Dolor ea aliqua deserunt ullamco dolore do magna labore laboris nisi do sint qui.",
+        "date_parution": "2015-01-21",
+        "tags": [
+            "Action"
+        ]
+    },
+    {
+        "_id": "5cb9997c9468758da83fa269",
+        "name": "Terlingua Yang ",
+        "auteurs": [
+            "Wynn  Mcintosh",
+            "Riley  Workman"
+        ],
+        "editeur": "Omnigog",
+        "collection": "Northchase Johnson Avenue",
+        "about": "Duis ad aute culpa reprehenderit dolor id officia cupidatat. Aliqua proident veniam ea sunt aliqua nisi elit quis ut.",
+        "date_parution": "2014-09-20",
+        "tags": [
+            "Policier",
+            "Jeunesse"
+        ]
+    },
+    {
+        "_id": "5cb9997c8550056c850d7e03",
+        "name": "Ivanhoe Hancock ",
+        "auteurs": [
+            "Ratliff  Reyes"
+        ],
+        "editeur": "Orbixtar",
+        "collection": "Roderfield Ryder Avenue",
+        "about": "Cupidatat ullamco incididunt Lorem magna exercitation non deserunt reprehenderit eiusmod mollit eu occaecat non. Adipisicing aute laborum est irure sint aute exercitation culpa nisi aute dolor.",
+        "date_parution": "2015-10-01",
+        "tags": [
+            "Jeunesse",
+            "Sciences Humaines"
+        ]
+    },
+    {
+        "_id": "5cb9997c0b95431c44b5f1c4",
+        "name": "Watchtower Bonner ",
+        "auteurs": [
+            "Diann  David"
+        ],
+        "editeur": "Fangold",
+        "collection": "Gibbsville Clymer Street",
+        "about": "Quis occaecat occaecat ipsum ex pariatur labore Lorem labore esse. Id magna quis adipisicing ullamco esse laborum.",
+        "date_parution": "2018-01-22",
+        "tags": [
+            "Manga",
+            "Science-Fiction"
+        ]
+    },
+    {
+        "_id": "5cb9997c511bb32381b35b78",
+        "name": "Mooresburg Noel ",
+        "auteurs": [
+            "Daniels  Shaw"
+        ],
+        "editeur": "Talkalot",
+        "collection": "Tedrow Junius Street",
+        "about": "Est enim commodo fugiat minim ullamco. Laboris in excepteur exercitation sit anim.",
+        "date_parution": "2018-05-31",
+        "tags": [
+            "Géographie",
+            "Comics",
+            "Romans"
+        ]
+    },
+    {
+        "_id": "5cb9997c31f873dfaf78c4bd",
+        "name": "Marysville Brock ",
+        "auteurs": [
+            "Chandler  Jennings",
+            "Elvia  Mccall"
+        ],
+        "editeur": "Webiotic",
+        "collection": "Cassel Fenimore Street",
+        "about": "Id in labore consequat Lorem excepteur irure magna sit non et Lorem qui. Officia et quis Lorem ea cupidatat eiusmod minim Lorem commodo laborum et ad velit deserunt.",
+        "date_parution": "2016-12-31",
+        "tags": [
+            "Bande Dessinée",
+            "Fictions",
+            "Erotisme"
+        ]
+    },
+    {
+        "_id": "5cb9997c47ff45f74ead6b24",
+        "name": "Fredericktown Owen ",
+        "auteurs": [
+            "Alba  Reid",
+            "Rosalyn  Miranda",
+            "Sarah  Sweeney"
+        ],
+        "editeur": "Eplosion",
+        "collection": "Salunga Charles Place",
+        "about": "Id dolor reprehenderit sit dolor sit sint consequat veniam sunt cupidatat laborum. Qui nisi incididunt aliqua mollit excepteur.",
+        "date_parution": "2015-10-22",
+        "tags": [
+            "Comics",
+            "Sciences Humaines",
+            "Enseignement ",
+            "Fictions"
+        ]
+    },
+    {
+        "_id": "5cb9997c721c114dd5ef24d2",
+        "name": "Eggertsville Carroll ",
+        "auteurs": [
+            "Paige  Berg",
+            "Weber  Townsend",
+            "Lauren  Cruz"
+        ],
+        "editeur": "Zentury",
+        "collection": "Englevale Bleecker Street",
+        "about": "Nulla nisi adipisicing excepteur elit culpa nisi quis ullamco ex labore incididunt. Ipsum aute duis magna et amet adipisicing duis aliquip adipisicing.",
+        "date_parution": "2016-06-08",
+        "tags": [
+            "Jeunesse"
+        ]
+    },
+    {
+        "_id": "5cb9997c35f30e148c20604d",
+        "name": "Hiseville Hess ",
+        "auteurs": [
+            "Shelby  Soto"
+        ],
+        "editeur": "Microluxe",
+        "collection": "Trail Alabama Avenue",
+        "about": "Ullamco proident ullamco mollit eiusmod est id non laboris sit labore. Duis nostrud ut ea aliqua quis sunt mollit.",
+        "date_parution": "2015-03-15",
+        "tags": [
+            "Manga"
+        ]
+    },
+    {
+        "_id": "5cb9997c725561ee63a0f10a",
+        "name": "Selma Conner ",
+        "auteurs": [
+            "Middleton  Contreras"
+        ],
+        "editeur": "Oceanica",
+        "collection": "Stonybrook Hubbard Place",
+        "about": "Deserunt ad pariatur aliqua officia eiusmod eiusmod quis. Eu magna mollit nisi eiusmod sit cillum in ut.",
+        "date_parution": "2016-02-22",
+        "tags": [
+            "Romans",
+            "Fictions"
+        ]
+    },
+    {
+        "_id": "5cb9997c0258b04f2c036a19",
+        "name": "Woodburn Duke ",
+        "auteurs": [
+            "William  Ochoa",
+            "Dyer  Meyer"
+        ],
+        "editeur": "Zanilla",
+        "collection": "Wilsonia Fuller Place",
+        "about": "Lorem culpa amet quis et non esse sit elit dolor minim non ipsum ex velit. Ullamco sit cupidatat non est exercitation.",
+        "date_parution": "2014-11-20",
+        "tags": [
+            "Enseignement ",
+            "Géographie",
+            "Science-Fiction",
+            "Fictions"
+        ]
+    },
+    {
+        "_id": "5cb9997cab23a7f8c437cf08",
+        "name": "Groveville Maxwell ",
+        "auteurs": [
+            "Robyn  Page",
+            "May  Ruiz"
+        ],
+        "editeur": "Xplor",
+        "collection": "Naomi Rewe Street",
+        "about": "Eiusmod aute officia pariatur elit ut dolore minim amet et proident occaecat eu do. Veniam amet et cupidatat magna occaecat non Lorem anim ipsum consectetur fugiat.",
+        "date_parution": "2014-04-27",
+        "tags": [
+            "Enseignement "
+        ]
+    }
+]
