@@ -9,6 +9,7 @@ const fs = require('fs');
 
 const booksJson = "books.json";
 const newBook = "newBook.json"
+const updatedBook = "updatedBook.json"
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -98,15 +99,46 @@ router.route('/books/:book_id')
     
     // update the book with this id (accessed at POST http://localhost:8080/api/books/:book_id)
     .put(function (req, res) {
-        res.json({
-            message: 'welcome to my PUT book ID !'
+        var myUpdatedBook = "";
+        var myListOfBooks = "";
+
+        fs.readFile(updatedBook, 'utf8', (err, updatedBook) => {
+            if (err) throw err;
+            myUpdatedBook = JSON.parse(updatedBook);
+            fs.readFile(booksJson, 'utf8', function readFileCallback(err, data) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    myListOfBooks = JSON.parse(data);
+                    getBookById(req.params.book_id, (books) => {
+                        myListOfBooks.books._id.delete();
+                    })
+                    myListOfBooks.books.push(myUpdatedBook);
+                    var json = JSON.stringify(myListOfBooks); //convert it back to json
+                    fs.writeFile('books.json', json, 'utf8', (err, data) => {
+                        console.log("Book updated");
+                    });
+                }
+            });
         });
+
     })
 
     // delete the book with this id (accessed at POST http://localhost:8080/api/books/:book_id)
     .delete(function (req, res) {
-        res.json({
-            message: 'welcome to my DELETE book ID!'
+        fs.readFile(booksJson, 'utf8', function readFileCallback(err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                myListOfBooks = JSON.parse(data);
+                getBookById(req.params.book_id, (booksJson) => {
+                    myListOfBooks.books._id.delete();
+                })
+                var json = JSON.stringify(myListOfBooks); //convert it back to json
+                fs.writeFile('books.json', json, 'utf8', (err, data) => {
+                    console.log("Book Deleted");
+                });
+            }
         });
     });
 
