@@ -77,7 +77,7 @@ router.route('/books')
     
 router.route('/books/:book_id')
 
-    // get a book with an id (accessed at POST http://localhost:8080/books)
+    // get a book with an id (accessed at POST http://localhost:8080/books/:book_id)
     .get(function (req, res) {
         book.find(function (err, books) {
             if (err)
