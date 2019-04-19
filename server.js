@@ -23,6 +23,7 @@ var router = express.Router();              // get an instance of the express Ro
 
 // middleware to use for all requests
 router.use(function (req, res, next) {
+
     // do logging
     console.log('What is happening in middleware ? ');
     next(); // make sure we go to the next routes and don't stop here
@@ -120,7 +121,33 @@ router.route('/books/:book_id')
     });
 
 
+
+app.get('/isLogged',
+    function checkIfIsLogged(req, res, next) {
+        if (!req.user.isLogged) {
+            next('route');
+        }
+    }, function getLogged(req, res, next) {
+        getLogged.find(function (err, doc) {
+            if (err) return next(err);
+            res.json(doc);
+        });
+    });
+
+
+
+app.use(function errorHandler(err, req, res, next) {
+    if (res.headersSent) {
+        return next(err);
+    }
+    res.status(500);
+    res.render('error', { error: err });
+});
+
 // START THE SERVER
 // =============================================================================
 app.listen(port);
 console.log('Look how big is my port ' + port);
+
+
+
