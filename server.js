@@ -6,8 +6,10 @@
 // call the packages we need
 var express = require('express');        // call express
 var app = express();                 // define our app using express
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');    //call body-parser
 const fs = require('fs');
+
+const jsonFileName = "books.json";
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -23,7 +25,6 @@ var router = express.Router();              // get an instance of the express Ro
 
 // middleware to use for all requests
 router.use(function (req, res, next) {
-
     // do logging
     console.log('What is happening in middleware ? ');
     next(); // make sure we go to the next routes and don't stop here
@@ -34,10 +35,10 @@ router.use(function (req, res, next) {
 //================================================================================================================
 //================================================================================================================
 
-    // all of our routes will start with "/"
-app.use('/', router);
+    // all of our routes will start with "/api"
+app.use('/api', router);
 
-    // test route to make sure everything is working (accessed at GET http://localhost:8080/test)
+    // test route to make sure everything is working (accessed at GET http://localhost:8080/api/test)
 router.get('/test', function (req, res) {
     res.json({ message: 'welcome to my api!' });
 });
@@ -49,7 +50,7 @@ router.get('/test', function (req, res) {
 
 router.route('/books')
 
-    // create a book (accessed at POST http://localhost:8080/books)
+    // create a book (accessed at POST http://localhost:8080/api/books)
     .post(function (req, res) {
         var book = new book();      // create a new instance of the book model
         book.name = req.body.name;  // set the books name (comes from the request)
@@ -61,7 +62,7 @@ router.route('/books')
         });
     })
 
-        // get all the books (accessed at POST http://localhost:8080/books)
+        // get all the books (accessed at POST http://localhost:8080/api/books)
     .get(function (req, res) {
         book.find(function (err, books) {
             if (err)
@@ -77,7 +78,7 @@ router.route('/books')
     
 router.route('/books/:book_id')
 
-    // get a book with an id (accessed at POST http://localhost:8080/books/:book_id)
+    // get a book with an id (accessed at POST http://localhost:8080/api/books/:book_id)
     .get(function (req, res) {
         book.find(function (err, books) {
             if (err)
@@ -86,7 +87,7 @@ router.route('/books/:book_id')
         });
     })
     
-    // update the book with this id (accessed at POST http://localhost:8080/books/:book_id)
+    // update the book with this id (accessed at POST http://localhost:8080/api/books/:book_id)
     .put(function (req, res) {
         book.findById(req.params.book_id, function (err, book) {
             if (err)
@@ -100,7 +101,7 @@ router.route('/books/:book_id')
         });
     })
 
-    // delete the book with this id (accessed at POST http://localhost:8080/books/:book_id)
+    // delete the book with this id (accessed at POST http://localhost:8080/api/books/:book_id)
     .delete(function (req, res) {
         book.remove({
             _id: req.params.book_id
@@ -116,7 +117,7 @@ router.route('/books/:book_id')
 //================================================================================================================
 //================================================================================================================
 
-app.get('/isLogged',
+/*app.get('/isLogged',
     function checkIfIsLogged(req, res, next) {
         if (!req.user.isLogged) {
             next('route');
@@ -126,7 +127,7 @@ app.get('/isLogged',
             if (err) return next(err);
             res.json(doc);
         });
-    });
+    });*/
 
 
 
@@ -137,6 +138,24 @@ app.use(function errorHandler(err, req, res, next) {
     res.status(500);
     res.render('error', { error: err });
 });
+
+// Error Handler
+function generateError(err, msg) {
+    var error = new Error(msg);
+    error.code = err;
+    return error;
+}
+
+// Custom Exceptions
+function notFoundException() {
+    return generateError("404", "The requested resource does not exist.");
+}
+function invalidOperationException() {
+    return generateError("400", "The specified book does not exist");
+}
+function missingInformationException() {
+    return generateError("400", "Important information of book does not exist");
+}
 
 
 // START THE SERVER
