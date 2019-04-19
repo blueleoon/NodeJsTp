@@ -1,7 +1,5 @@
-// server.js
-
 // BASE SETUP
-// =============================================================================
+// ================================================================================================================
 
 // call the packages we need
 var express = require('express');        // call express
@@ -9,7 +7,7 @@ var app = express();                 // define our app using express
 var bodyParser = require('body-parser');    //call body-parser
 const fs = require('fs');
 
-const jsonFileName = "books.json";
+const booksJson = "books.json";
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -19,7 +17,7 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8080;        // set our port
 
 // ROUTES FOR OUR API
-// =============================================================================
+//================================================================================================================
 var router = express.Router();              // get an instance of the express Router
 
 
@@ -40,7 +38,9 @@ app.use('/api', router);
 
     // test route to make sure everything is working (accessed at GET http://localhost:8080/api/test)
 router.get('/test', function (req, res) {
-    res.json({ message: 'welcome to my api!' });
+    res.json({
+        message: 'welcome to my test api!'
+    });
 });
 
 
@@ -50,28 +50,60 @@ router.get('/test', function (req, res) {
 
 router.route('/books')
 
-    // create a book (accessed at POST http://localhost:8080/api/books)
-    .post(function (req, res) {
-        var book = new book();      // create a new instance of the book model
-        book.name = req.body.name;  // set the books name (comes from the request)
-        // save the book and check for errors
-        book.save(function (err) {
-            if (err)
-                res.send(err);
-            res.json({ message: 'book created!' });
-        });
-    })
-
         // get all the books (accessed at POST http://localhost:8080/api/books)
     .get(function (req, res) {
-        book.find(function (err, books) {
-            if (err)
-                res.send(err);
+        readDB((books) => {
             res.json(books);
-        });
-    });
+        })
+    })
+
+        // create a book (accessed at POST http://localhost:8080/api/books)
+    .post(function (req, res) {
 
 
+
+
+
+
+
+
+  {
+      "_id": "5cba3ac65f6f1776675f9d6a",
+      "nom": "Elizaville Ferguson ",
+      "auteurs": [
+          "Cross  Santos",
+          "Coffey  Schneider",
+          "Isabelle  Coffey"
+      ],
+      "editeur": "Comveyor",
+      "collection": "Yettem Morgan Avenue",
+      "about": "Commodo esse aliquip ut velit laborum. Reprehenderit dolor sint duis in aute sit.",
+      "date_parution": "05-12-2016",
+      "tags": [
+          "Jeunesse",
+          "Erotisme"
+      ]
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    })
+
+   
     // on routes that end in /books/:book_id
 //================================================================================================================
 //================================================================================================================
@@ -80,35 +112,22 @@ router.route('/books/:book_id')
 
     // get a book with an id (accessed at POST http://localhost:8080/api/books/:book_id)
     .get(function (req, res) {
-        book.find(function (err, books) {
-            if (err)
-                res.send(err);
+        getBookById(req.params.book_id,  (books) => {
             res.json(books);
-        });
+        })
     })
     
     // update the book with this id (accessed at POST http://localhost:8080/api/books/:book_id)
     .put(function (req, res) {
-        book.findById(req.params.book_id, function (err, book) {
-            if (err)
-                res.send(err);
-            book.name = req.body.name;  // update the books info
-            book.save(function (err) {
-                if (err)
-                    res.send(err);
-                res.json({ message: 'book updated!' });
-            });
+        res.json({
+            message: 'welcome to my PUT book ID !'
         });
     })
 
     // delete the book with this id (accessed at POST http://localhost:8080/api/books/:book_id)
     .delete(function (req, res) {
-        book.remove({
-            _id: req.params.book_id
-        }, function (err, book) {
-            if (err)
-                res.send(err);
-            res.json({ message: 'Successfully deleted' });
+        res.json({
+            message: 'welcome to my DELETE book ID!'
         });
     });
 
@@ -117,46 +136,23 @@ router.route('/books/:book_id')
 //================================================================================================================
 //================================================================================================================
 
-/*app.get('/isLogged',
-    function checkIfIsLogged(req, res, next) {
-        if (!req.user.isLogged) {
-            next('route');
-        }
-    }, function getLogged(req, res, next) {
-        getLogged.find(function (err, doc) {
-            if (err) return next(err);
-            res.json(doc);
-        });
-    });*/
-
-
-
-app.use(function errorHandler(err, req, res, next) {
-    if (res.headersSent) {
-        return next(err);
+app.get('/books/:book_id', (req, res, next) => {
+    const userId = req.params.id
+    if (!userId) {
+        const error = new Error('missing id')
+        error.httpStatusCode = 400
+        return next(error)
     }
-    res.status(500);
-    res.render('error', { error: err });
-});
 
-// Error Handler
-function generateError(err, msg) {
-    var error = new Error(msg);
-    error.code = err;
-    return error;
-}
+    Users.get(userId, (err, user) => {
+        if (err) {
+            err.httpStatusCode = 500
+            return next(err)
+        }
 
-// Custom Exceptions
-function notFoundException() {
-    return generateError("404", "The requested resource does not exist.");
-}
-function invalidOperationException() {
-    return generateError("400", "The specified book does not exist");
-}
-function missingInformationException() {
-    return generateError("400", "Important information of book does not exist");
-}
-
+        res.send(users)
+    })
+})
 
 // START THE SERVER
 //================================================================================================================
@@ -164,4 +160,29 @@ app.listen(port);
 console.log('Look how big is my port ' + port);
 
 
+
+function getBookById(id, cb) {
+    readDB((books) => {
+        if (!id) {
+            cb(books);
+        } else {
+            books.forEach(book => {
+                if (book._id == id) {
+                    cb(book);
+                }
+            });
+        }
+    })
+}
+
+
+
+
+function readDB(cb) {
+    fs.readFile(booksJson, (err, data) => {
+        if (err) throw err;
+        let books = JSON.parse(data);
+        cb(books);
+    });
+}
 
