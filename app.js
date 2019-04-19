@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');    //call body-parser
 const fs = require('fs');
 
 const booksJson = "books.json";
+const newBook = "newBook.json"
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -59,48 +60,26 @@ router.route('/books')
 
         // create a book (accessed at POST http://localhost:8080/api/books)
     .post(function (req, res) {
+        var myNewBook = "";
+        var myListOfBooks = "";
 
+        fs.readFile(newBook, 'utf8', (err, newBook) => {
+            if (err) throw err;
+            myNewBook = JSON.parse(newBook);
+            fs.readFile(booksJson, 'utf8', function readFileCallback(err, data) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    myListOfBooks = JSON.parse(data);
+                    myListOfBooks.books.push(myNewBook);
+                    var json = JSON.stringify(myListOfBooks); //convert it back to json
+                    fs.writeFile('books.json', json, 'utf8', (err,data)=>{
+                        console.log("New books created");
+                    }); 
+                }
+            });
+        });
 
-
-
-
-
-
-
-  {
-      "_id": "5cba3ac65f6f1776675f9d6a",
-      "nom": "Elizaville Ferguson ",
-      "auteurs": [
-          "Cross  Santos",
-          "Coffey  Schneider",
-          "Isabelle  Coffey"
-      ],
-      "editeur": "Comveyor",
-      "collection": "Yettem Morgan Avenue",
-      "about": "Commodo esse aliquip ut velit laborum. Reprehenderit dolor sint duis in aute sit.",
-      "date_parution": "05-12-2016",
-      "tags": [
-          "Jeunesse",
-          "Erotisme"
-      ]
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
     })
 
    
@@ -159,8 +138,6 @@ app.get('/books/:book_id', (req, res, next) => {
 app.listen(port);
 console.log('Look how big is my port ' + port);
 
-
-
 function getBookById(id, cb) {
     readDB((books) => {
         if (!id) {
@@ -174,9 +151,6 @@ function getBookById(id, cb) {
         }
     })
 }
-
-
-
 
 function readDB(cb) {
     fs.readFile(booksJson, (err, data) => {
